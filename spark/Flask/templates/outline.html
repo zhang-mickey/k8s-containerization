@@ -1,0 +1,153 @@
+<!DOCTYPE html> 
+<html lang="en">
+
+<head>
+    <title>日志管理</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+    <script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <link href="../static/css/styles.css" rel="stylesheet">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+</head>
+
+<body>
+    <div class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Logo -->
+                    <div class="logo">
+                        <h1><a>实时日志入侵检测系统</a></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-content">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="sidebar content-box" style="display: block;">
+                    <ul class="nav">
+                        <!-- 主菜单目录 -->
+                       <li><a href="welcome"><i class="glyphicon glyphicon-asterisk"></i> 欢迎</a>
+                        </li>
+                        <li ><a href="about"><i class="glyphicon glyphicon-info-sign"></i> 关于系统</a>
+                        </li>
+                         <li class="current"><a href="outline"><i class="glyphicon glyphicon-cog"></i> 日志管理</a>
+                        </li>
+                        <li><a href="analysis"><i class="glyphicon glyphicon-stats"></i> 实时日志分析</a>
+                        </li>
+
+                        <li><a href="id"><i class="glyphicon glyphicon-adjust"></i> 实时入侵检测</a>
+                        </li>
+                        <li><a href="index"><i class="glyphicon glyphicon-cog"></i> 系统设置</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="alert alert-success" role="alert">
+                            <h5 class="alert-heading"><i class="glyphicon glyphicon-cloud-upload"></i>上传历史日志文件进行离线分析</h5>
+                <form action="<c:url value='/Upload1Servlet'/>"method="post" enctype="multipart/form-data">
+                            <input type="text" id="bottom" value="将文件拖到此处" onfocus="myfunc()">
+                            <script type="text/javascript">
+                                    function myfunc(){
+                                        var res=$('#bottom').val();
+                                        if(res=="将文件拖到此处"){
+                                            $('#bottom').val('');
+                                        }
+
+                                    }
+                            </script>
+                            <input type="submit" value="点击上传"/>
+                </form>
+                            <input type="checkbox" >数据预处理
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="alert alert-info" role="alert">
+                                    <h4 id="sys_time" class="alert-heading">Loading...</h4>
+                                    <p>系统时间</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="content-box-header">
+                            <div class="panel-title"><i class="glyphicon glyphicon-align-left"></i>&nbsp;日志预览</div>
+                        </div>
+                        <div class="content-box-large box-with-header">
+                            <h5 id="log_stream">
+                                Loading...
+                                <br><br>
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+                    <div class="row">
+                    <div class="col-md-12">
+                        <div class="content-box-header">
+                            <div class="panel-title"><i class="glyphicon glyphicon-align-left"></i>&nbsp;文件管理</div>
+                        </div></br>
+<!--    log1.csv  &nbsp  &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp &nbsp   &nbsp  &nbsp &nbsp  &nbsp &nbsp &nbsp  <a>删除</a></br>-->
+<!--    log2.txt  &nbsp  &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp &nbsp   &nbsp  &nbsp &nbsp  &nbsp &nbsp &nbsp  <a>删除</a>-->
+                        <div class="content-box-large box-with-header">
+                            <h5 id="c">
+
+                                <br><br>
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+<!--    <footer>-->
+<!--        <div class="container">-->
+
+<!--            <div class="copy text-center">-->
+<!--                实时日志分析与入侵检测系统 <br> <a></a>-->
+<!--            </div>-->
+
+<!--        </div>-->
+<!--    </footer>-->
+    
+    <script type="text/javascript">
+
+    $(document).ready(function() {
+        namespace = '/sys_time';
+        var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port + namespace);
+        socket.on('sys_time', function(res) {
+            document.getElementById("sys_time").innerText = res.data;
+        });
+    });
+
+    $(document).ready(function() {
+        namespace = '/log_stream';
+        var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port + namespace);
+        socket.on('log_stream', function(res) {
+            document.getElementById("log_stream").innerText = res.data;
+        });
+    });
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Cache-Control" content="no-cache">
+	<meta http-equiv="Expires" content="0">
+	<title>登录前端页面  - </title>
+	<link href="../static/css/login.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div class="login_box">
+      <div class="login_l_img">
+          <img src="{{ url_for('static',filename='img.png')}}" >
+      </div>
+      <div class="login">
+          <div class="login_logo">
+              <a href="#"><img src="{{url_for('static',filename='logo.png')}}" ></a>
+          </div>
+          <div class="login_name">
+               <p>登录系统</p>
+          </div>
+          <form method="post">
+              <input name="username" type="text"  value="用户名" onfocus="this.value=''" onblur="if(this.value==''){this.value='用户名'}">
+              <span id="password_text" onclick="this.style.display='none';
+                  document.getElementById('password').style.display='block';
+                  document.getElementById('password').focus().select();" >密码
+              </span>
+<input name="password" type="password" id="password" style="display:none;
+" onblur="if(this.value==''){document.getElementById('password_text').style.display='block';
+    this.style.display='none'};"/>
+              <input value="登录" style="width:100%;" type="submit">
+          </form>
+          <a>注册</a>
+      </div>
+      <div class="copyright">spark日志审计系统</div>
+</div>
+<style>
+.copyrights{text-indent:-9999px;height:0;line-height:0;font-size:0;overflow:hidden;}
+</style>
+</body>
+</html>
+
+<!--<!DOCTYPE html>-->
+<!--&lt;!&ndash; <html lang="en"> &ndash;&gt;-->
+
+<!--<head xmlns="http://www.w3.org/1999/html">-->
+<!--    <title>系统设置</title>-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">-->
+<!--    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">-->
+<!--    <script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>-->
+<!--    <link href="../static/css/styles.css" rel="stylesheet">-->
+<!--    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>-->
+<!--</head>-->
+
+<!--<body>-->
+<!--    <div class="header">-->
+<!--        <div class="container">-->
+<!--            <div class="row">-->
+<!--                <div class="col-md-12">-->
+<!--                    &lt;!&ndash; Logo &ndash;&gt;-->
+<!--                    <div class="logo">-->
+<!--                        <h1><a>实时日志入侵检测系统</a></h1>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="page-content">-->
+<!--        <div class="row">-->
+<!--            <div class="col-md-2">-->
+<!--                <div class="sidebar content-box" style="display: block;">-->
+<!--                    <ul class="nav">-->
+<!--                        &lt;!&ndash; Main menu &ndash;&gt;-->
+<!--                   <li><a href="welcome"><i class="glyphicon glyphicon-asterisk"></i> 欢迎</a>-->
+<!--                        </li>-->
+<!--                        <li><a href="about"><i class="glyphicon glyphicon-info-sign"></i> 关于系统</a>-->
+<!--                        </li>-->
+<!--                         <li><a href="outline"><i class="glyphicon glyphicon-cog"></i> 日志管理</a>-->
+<!--                        </li>-->
+<!--                        <li><a href="analysis"><i class="glyphicon glyphicon-stats"></i> 实时日志分析</a>-->
+<!--                        </li>-->
+
+<!--                        <li><a href="id"><i class="glyphicon glyphicon-adjust"></i> 实时入侵检测</a>-->
+<!--                        </li>-->
+<!--                        <li class="current"><a href="index"><i class="glyphicon glyphicon-cog"></i> 系统设置</a>-->
+<!--                        </li>-->
+<!--                    </ul>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--&lt;!&ndash;            <div class="col-md-10">&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="row">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="col-md-6">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <div class="alert alert-success" role="alert">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <h4 class="alert-heading">用户名</h4>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <p>凯撒</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--    -->
+<!--                    <div class="col-md-6">-->
+<!--                        <div class="row">-->
+<!--                            <div class="col-md-12">-->
+<!--                                <div class="alert alert-info" role="alert">-->
+<!--                                    <h4 id="sys_time" class="alert-heading">Loading...</h4>-->
+<!--                                    <p>系统时间</p>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--                <div class="row">-->
+<!--                    <div class="col-md-12">-->
+<!--                        <div class="content-box-header">-->
+<!--                            <div class="panel-title">登录记录</div>-->
+<!--                        </div>-->
+<!--                        <div class="content-box-large box-with-header">-->
+<!--                            <h5 id="log_stream">-->
+<!--                                Loading...-->
+<!--                                <br><br>-->
+<!--                            </h5>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+
+<!--        </div>-->
+<!--    </div>-->
+
+<!--&lt;!&ndash;    <footer>&ndash;&gt;-->
+<!--&lt;!&ndash;        <div class="container">&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <div class="copy text-center">&ndash;&gt;-->
+<!--&lt;!&ndash;                实时日志分析与入侵检测系统 <br> <a></a>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;    </footer>&ndash;&gt;-->
+<!--    -->
+<!--    <script type="text/javascript">-->
+
+<!--    $(document).ready(function() {-->
+<!--        namespace = '/sys_time';-->
+<!--        var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port + namespace);-->
+<!--        socket.on('sys_time', function(res) {-->
+<!--            document.getElementById("sys_time").innerText = res.data;-->
+<!--        });-->
+<!--    });-->
+
+<!--    $(document).ready(function() {-->
+<!--        namespace = '/log_stream';-->
+<!--        var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port + namespace);-->
+<!--        socket.on('log_stream', function(res) {-->
+<!--            document.getElementById("log_stream").innerText = res.data;-->
+<!--        });-->
+<!--    });-->
+
+<!--    </script>-->
+<!--</body>-->
+
+<!--</html>-->

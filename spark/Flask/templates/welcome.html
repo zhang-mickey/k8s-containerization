@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<HEAD>
+    <TITLE>态势感知平台-欢迎</title> 
+    <meta NAME="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+    <link HREF="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+    <script TYPE="text/javascript" src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <link HREF="../static/css/styles.css" rel="stylesheet">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+</head> 
+
+<BODY>
+    <DIV class="header">
+        <DIV class="container">
+            <div class="row">
+                <DIV class="col-md-12">
+                    <!-- Logo -->
+                    <DIV class="logo">
+                        <h1><a>实时日志入侵检测系统</a></h1>
+                    </div> 
+                </div> 
+            </div> 
+        </DIV>
+    </DIV>
+
+    <DIV class="page-content">
+        <DIV class="row">
+            <DIV class="col-md-2">
+                <DIV class="sidebar content-box" stycle="display: block;">
+                    <OL class="nav">
+                        <!-- Main menu -->
+                       <LI class="current"><a HREF="welcome"><i class="glyphicon glyphicon-asterisk"></i> 欢迎</a>
+                        </LI>
+                        <LI ><a HREF="about"><i class="glyphicon glyphicon-info-sign"></i> 关于系统</a>
+                        </LI>
+                         <LI><a HREF="outline"><i class="glyphicon glyphicon-cog"></i> 日志管理</a>
+                        </LI>
+                        <li><a HREF="analysis"><i class="glyphicon glyphicon-stats"></i> 实时日志分析</a>
+                        </li>
+
+                        <LI><a HREF="id"><i class="glyphicon glyphicon-adjust"></i> 实时入侵检测</a>
+                        </li>
+                        <LI><a HREF="index"><i class="glyphicon glyphicon-cog"></i> 系统设置</a>
+                        </li>
+
+                    </ol>
+                </div>
+            </div>
+            <DIV class="ol-md-10">
+                <DIV class="row">
+                    <div class="col-md-6">
+                        <DIV class="alert alert-success" role="alert">
+                            <H4 class="alert-heading">欢迎使用</H4>
+                            <p>实时日志分析与入侵检测系统可提供面向网络安全的实时日志分析解决方案。</p>
+                        </div>
+                    </div>
+                    <DIV class="col-md-6">
+                        <DIV class="row">
+                            <DIV class="col-md-12">
+                                <DIV class="alert alert-info" role="alert">
+                                    <H4 id="sys_time" class="alert-heading">Loading...</H4>
+                                    <p>系统时间</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="content-box-header">
+                            <div class="panel-title">实时日志流</div>
+                        </div>
+                        <div class="content-box-large box-with-header">
+                            <div>
+                               <ul style="list-style-type:none"></ul>
+                            </div>
+                            <h5 id="log_stream">
+                                <script>
+
+                                    let a1= ["1608134394.75733   Ca5EKF3CZgdJdjQhea  80.82.77.189  202.38.129.63  tcp  S0   -","1608134389.76613  CLUQrJ3G8IHq2gpdff  202.38.128.60   159.226.8.6  udp  SF  dns","1608134389.776929  CAG6Ho2OWOcI0ZipS  192.168.52.143  192.168.52.143  udp  S0   dns",
+"1608134389.780645  CAdbH34iMKiRm0tpEc  202.38.128.52   202.38.128.52  udp   S0    dns",
+"1608134379.78301  CUz2oTyubK6He0Vjj   202.38.128.53   8.8.8.8   udp  SF  1.841467 ","1608134389.780645  CAdbH34iMKiRm0tpEc  202.38.128.52   202.38.128.52  udp   S0    dns","1608134389.780645  CAdbH34iMKiRm0tpEc  202.38.128.52   202.38.128.52  udp   S0    dns","1608134389.780645  CAdbH34iMKiRm0tpEc  202.38.128.52   202.38.128.52  udp   S0    dns","1608134389.780645  CAdbH34iMKiRm0tpEc  202.38.128.52   202.38.128.52  udp   S0    dns","1608134389.780645  CAdbH34iMKiRm0tpEc  202.38.128.52   202.38.128.52  udp   S0    dns","1608134389.780645  CAdbH34iMKiRm0tpEc  202.38.128.52   202.38.128.52  udp   S0    dns"]
+
+                            // 参数time代表定时器的时间
+                               function timeout(time) {
+                                 return new Promise(resolve => {
+                                 setTimeout(() => {
+                                   resolve();
+                                 }, time);
+                               });
+                             }
+
+                            // 循环数组
+                               async function fn(a1) {
+                                 for (let i = 0; i < a1.length; i++) {
+                                  $('ul').append('<li>' + a1[i] + '</li>');
+                                  await timeout(1000);
+                              }
+                            }
+
+                                fn(a1);
+
+
+
+                        </script>
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+<!--    <footer>-->
+<!--        <div class="container">-->
+
+<!--            <div class="copy text-center">-->
+<!--                实时日志分析与入侵检测系统 <br> <a></a>-->
+<!--            </div>-->
+
+<!--        </div>-->
+<!--    </footer>-->
+    
+    <script TYPE="text/javascript">
+
+    $(document).ready(function() {
+        namespace = '/sys_time';
+        var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port + namespace);
+        socket.on('sys_time', function(res) {
+            document.getElementById("sys_time").innerText = res.data;
+        });
+    });
+
+    $(document).ready(function() {
+        namespace = '/log_stream';
+        var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port + namespace);
+        socket.on('log_stream', function(res) {
+            document.getElementById("log_stream").innerText = res.data;
+        });
+    });
+
+    </script>
+</body>
+
+</html>
