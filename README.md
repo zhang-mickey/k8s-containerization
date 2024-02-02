@@ -2,19 +2,17 @@
 
 
 # Diagram
+![image](https://github.com/zhang-mickey/k8s-containerization/assets/145342600/c15b3101-c91a-414c-8839-78a60c222427)
 
 
-
-
-# Application upgrade and re-deploymen
+# Application upgrade and re-deployment
 re-build the application after a source code change 
-'''
-sss
-'''
-upgrade the running application in two ways: deployment rollout and canary update
-'''
+```
 
-'''
+```
+upgrade the running application in two ways: deployment rollout and canary update
+```
+```
 
 # PostgreSQL
 
