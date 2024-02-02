@@ -29,7 +29,7 @@ create your own Dockerfile for this image
 can read and write to the database
 
 # Web front-end
-
+we build the frontend files into flask application image. 
 # Helm Chart
 
 # TLS
@@ -67,4 +67,6 @@ sudo microk8s kubectl auth can-i create pod --namespace default --as calvin
 
 ```
 microk8s enable cert-manager
+/etc/hosts
+127.0.0.1 mygrocery-g43.com
 ```
