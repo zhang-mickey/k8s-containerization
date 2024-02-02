@@ -3,6 +3,19 @@
 
 # Diagram
 
+
+
+
+# Application upgrade and re-deploymen
+re-build the application after a source code change 
+'''
+sss
+'''
+upgrade the running application in two ways: deployment rollout and canary update
+'''
+
+'''
+
 # PostgreSQL
 
 use a pre-built docker image for this database
