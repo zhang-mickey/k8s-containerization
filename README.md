@@ -4,11 +4,22 @@
 # Diagram
 ![image](https://github.com/zhang-mickey/k8s-containerization/assets/145342600/c15b3101-c91a-414c-8839-78a60c222427)
 
-# Prequisites
+# PrequisitesS
+
+For installation, Docker and microk8s should be installed for our project
+```
+microk8s install
+Docker install
+```
+
+# Implement the dockerfile for configuration
+
 
 # Application upgrade and re-deployment
 re-build the application after a source code change 
 ```
+
+
 
 ```
 upgrade the running application in two ways: deployment rollout and canary update
@@ -55,6 +66,8 @@ Ensure that the configuration of the database makes use of ConfigMaps and Secret
 create your own Dockerfile for this image
 
 can read and write to the database
+when in cloud:
+ip changes
 
 # Web front-end
 we build the frontend files into flask application image. 
