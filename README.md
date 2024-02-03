@@ -86,6 +86,11 @@ helm install ./grocery-test --generate-name
 
 
 ```
+
+```
+SELECT * FROM <table_name>;
+
+```
 # commands on Microk8s
 
 ```
