@@ -31,7 +31,9 @@ can read and write to the database
 # Web front-end
 we build the frontend files into flask application image. 
 # Helm Chart
+```
 
+```
 # TLS
 use **cert-manager** 
 We use a **self-signed ClusterIssuer** to create a self-signed certificates cluster-wide.certificates(signed by a self-made certificate authority). 
@@ -68,8 +70,21 @@ sudo microk8s kubectl auth can-i create pod --namespace default --as calvin
 
 # google cloud
 enable calico k8s network policy
+upload the file to the cluster through cloudshell
+```
+docker build .
+```
+
+push the image to the repository, tag it with the repository name and then push the image‘
+```
+docker tag dockerID us-east1-docker.pkg.dev/poised-rock-413209/grocery/zhang
+docker push us-east1-docker.pkg.dev/poised-rock-413209/grocery/zhang
+```
 
 ```
+helm install ./grocery-test --generate-name
+
+
 ```
 # commands on Microk8s
 
