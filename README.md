@@ -65,6 +65,12 @@ sudo microk8s kubectl auth can-i list pod --namespace default --as calvin
 sudo microk8s kubectl auth can-i get pod --namespace default --as calvin
 sudo microk8s kubectl auth can-i create pod --namespace default --as calvin
 ```
+
+# google cloud
+enable calico k8s network policy
+
+```
+```
 # commands on Microk8s
 
 ```
