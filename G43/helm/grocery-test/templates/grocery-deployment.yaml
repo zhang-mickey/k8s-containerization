@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{.Values.flask.name}}
+  labels:
+    app: grocery-api
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: grocery-api
+  template:
+    metadata:
+      labels:
+        app: grocery-api
+    spec:
+      containers:
+      - name: {{.Values.container.name}}
+        image: "{{.Values.image.repository}}:{{.Values.image.tag}}"
+        ports:
+        - containerPort: {{.Values.flask.port}}
+   

@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    # add an annotation indicating the issuer to use.
+    cert-manager.io/issuer: my-ca-issuer
+    cert-manager.io/common-name: mygrocery-g43.com
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+  name: my-ingress
+  namespace: default
+spec:
+  rules:
+  - host: mygrocery-g43.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: /
+        backend:
+          service:
+            name: grocery-service
+            port:
+              number: 8081
+  tls: # < placing a host in the TLS config will determine what ends up in the cert's subjectAltNames
+  - hosts:
+    - mygrocery-g43.com
+    secretName: myingress-cert # < cert-manager will store the created certificate in this secret.

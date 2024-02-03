@@ -1,0 +1,16 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  namespace: default
+  name: pod-reader-binding-1
+subjects:
+  - kind: User
+    name: calvin
+    apiGroup: rbac.authorization.k8s.io
+  #- kind: User
+  #  name: zzy
+  #  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: pod-watcher-1
+  apiGroup: rbac.authorization.k8s.io

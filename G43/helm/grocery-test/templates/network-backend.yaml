@@ -1,0 +1,19 @@
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: api-allow-1
+spec:
+  podSelector:
+    matchLabels:
+     app: grocery-api
+  policyTypes:
+    - Ingress
+    - Egress
+  egress:
+    - to:
+      - podSelector:
+          matchLabels:
+            app: postgres
+  ingress:
+  - {}
+  
