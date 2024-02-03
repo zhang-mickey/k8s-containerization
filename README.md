@@ -6,6 +6,8 @@
 ![image](https://github.com/zhang-mickey/k8s-containerization/assets/145342600/c15b3101-c91a-414c-8839-78a60c222427)
 * Sequence Diagram
 <img width="954" alt="image" src="https://github.com/calvinhaooo/software_containerization_G43/assets/145342600/fee6a71f-241b-4698-a1ec-4684b3217f14">
+* Class Diagram
+![image](https://github.com/calvinhaooo/software_containerization_G43/assets/145265103/f0b18a42-fbe1-454b-99cc-9b4939e89cff)
 
 ## Prequisites
 
