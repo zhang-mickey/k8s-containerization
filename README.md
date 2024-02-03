@@ -93,6 +93,10 @@ sudo microk8s kubectl auth can-i create pod --namespace default --as calvin
 
 # google cloud
 enable calico k8s network policy
+
+```
+```
+
 upload the file to the cluster through cloudshell
 ```
 docker build .
