@@ -55,6 +55,8 @@ To test the network policy we have defined:
 
 ```
 
+![https](https://github.com/calvinhaooo/software_containerization_G43/assets/145265103/1de732b4-e269-42dc-a3b5-08a21a39e323)
+
 # RBAC
 check user permissions as follows
 
