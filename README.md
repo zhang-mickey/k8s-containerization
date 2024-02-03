@@ -20,11 +20,11 @@ Docker install
 ## Repository Structure
 *`grocery`
 * * `*.yaml`: kubenetes configuration files
-  * `Dockerfile`:  containerize the REST API and the Web front end.
+  * `Dockerfile`:  containerize the REST API and the Web front end
   * `static` : rendering
   * `temlates`: HTML
-*`helm/grocery-test`: helm char for the whole application
-*`postgres`
+* `helm/grocery-test`: helm char for the whole application
+* `postgres`
 * * `*.yaml`: kubenetes configuration files
 * `security`
 * * `RBAC`: Configure Role Based Access Control for the application
