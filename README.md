@@ -41,6 +41,11 @@ INSERT INTO groceries (name) VALUES ('watermelon');
 INSERT INTO groceries (name) VALUES ('dragonfruit');
 
 ```
+```
+docker build .
+docker images
+
+```
 
 the Service exposed by the database is such that it can be accessed by the REST API, but not by users outside of the cluster 
 
@@ -113,7 +118,8 @@ helm install ./grocery-test --generate-name
 
 
 ```
-
+/etc/hosts
+ mygrocery-g43.com
 ```
 SELECT * FROM <table_name>;
 
