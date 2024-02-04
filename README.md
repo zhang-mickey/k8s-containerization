@@ -148,7 +148,7 @@ http://mygrocery-g43-1.com
 ## Network Policy
 For the database, we define a policy which only allows ingress from the flask API.
 For the backend, we define a policy which only allows egress to the PostgreSQL.
-
+We also define network policy that can block request to the DNS server and allow connection within 30001-32767 
 To test the network policy we have defined:
 ```
 sudo microk8s kubectl run test -$RANDOM --rm -i -t -image=apline --labels="app=postgres" --sh
@@ -159,6 +159,13 @@ then we use wget to verify the connection
 wget -qO http://grocery-service-1
 ```
 
+```
+sudo microk8s kubectl run test -$RANDOM --rm -i -t -image=apline --labels="app=foo" --sh
+```
+this should return bad address
+```
+wget -qO http://grocery-service-1
+```
 
 
 ## RBAC
