@@ -64,42 +64,15 @@ upgrade the running application in two ways: deployment rollout and canary updat
 
 ## PostgreSQL
 
-we use a pre-built docker image for this database
-```
-FROM postgres:latest
-ENV POSTGRES_PASSWORD 123456
-COPY *.sql /docker-entrypoint-initdb.d
+we use a pre-built docker image and create our own Dockerfile for the database,because we want the docker to run the sql file to create the database in the beginning
 
-
-```
-the sql file to create the database
-```
-CREATE DATABASE my_db;
-CREATE TABLE groceries (id SERIAL PRIMARY KEY, name TEXT);
-
-INSERT INTO groceries (name) VALUES ('apples');
-INSERT INTO groceries (name) VALUES ('bananas');
-INSERT INTO groceries (name) VALUES ('clemintines');
-INSERT INTO groceries (name) VALUES ('cheese');
-INSERT INTO groceries (name) VALUES ('cilantro');
-INSERT INTO groceries (name) VALUES ('pineapple');
-INSERT INTO groceries (name) VALUES ('strawberry');
-INSERT INTO groceries (name) VALUES ('watermelon');
-INSERT INTO groceries (name) VALUES ('dragonfruit');
-
-```
-```
-docker build .
-docker images
-
-```
 
 the Service exposed by the database is such that it can be accessed by the REST API, but not by users outside of the cluster 
 
 Ensure that the configuration of the database makes use of ConfigMaps and Secrets appropriately
 
 ## RESTAPI  
-create your own Dockerfile for this image
+we create your own Dockerfile for this image
 
 can read and write to the database
 when in cloud:
