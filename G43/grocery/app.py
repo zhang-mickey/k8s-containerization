@@ -88,11 +88,11 @@ def delete_items():
 
     item_name = request.form["select_items"]  # 从表单获取项名称
 
-    db = getattr(g, '_database', None)
+    #db = getattr(g, '_database', None)
 
     if db is None:
 
-        conn_string = "host='10.0.2.15' port='30001' dbname='my_db' user='postgres' password ='123456'"
+      #  conn_string = "host='10.0.2.15' port='30001' dbname='my_db' user='postgres' password ='123456'"
 
         db = g._database = psycopg2.connect(conn_string)
 
@@ -136,11 +136,11 @@ def delete_items():
 
 def get_db():
 
-    db = getattr(g, '_database', None)
+   # db = getattr(g, '_database', None)
 
     if db is None:
 
-        conn_string = "host='10.0.2.15' port='30001' dbname='my_db' user='postgres' password ='123456'"
+      #  conn_string = "host='10.0.2.15' port='30001' dbname='my_db' user='postgres' password ='123456'"
 
         db = g._database = psycopg2.connect(conn_string)
 
