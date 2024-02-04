@@ -95,12 +95,12 @@ Then, use it to bootstrap a **root certificate** which is stored in a secret(roo
 Next, we can configure ingress with a certificate signed by CA Issuer. 
 Once we have built the TLS connection,we can check whether the application is accessible via https:
 ```
-https://
+https://mygrocery-g43-1.com
 ```
 ![https](https://github.com/calvinhaooo/software_containerization_G43/assets/145265103/1de732b4-e269-42dc-a3b5-08a21a39e323)
 check if http request can be directed to https:
 ```
-http://
+http://mygrocery-g43-1.com
 ```
 
 ## Network Policy
@@ -109,7 +109,11 @@ For the backend, we define a policy which only allows egress to the PostgreSQL.
 
 To test the network policy we have defined:
 ```
+sudo microk8s kubectl run test -$RANDOM --rm -i -t -image=apline --labels="app=postgres" --sh
+```
 
+```
+wget -qO http://grocery-service-1
 ```
 
 
@@ -158,5 +162,5 @@ SELECT * FROM <table_name>;
 ```
 microk8s enable cert-manager
 /etc/hosts
-127.0.0.1 mygrocery-g43.com
+127.0.0.1 mygrocery-g43-1.com
 ```
