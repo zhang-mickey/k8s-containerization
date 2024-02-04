@@ -84,7 +84,7 @@ upgrade the running application in two ways:
 when we change the version or image, we can upgrade the application using helm upgrade
 
 ```
-helm upgrade outlets outlets -f outlets/values-v2.yaml
+helm upgrade <helm-name> ./grocery-test -f grocert-test/values.yaml
 ```
 
 if needed,we can  rollback to previous version
@@ -97,11 +97,25 @@ Firtst we have 10 pods for the grocery-deployment
 ```
 kubectl get pods --show-labels
 ```
-apply the grocery-deployment2.yaml
+apply the grocery-deployment-2.yaml
 ```
-kubectl apply -f grocery-deployment2.yaml
+kubectl apply -f grocery-deployment-2.yaml
+```
+```
+kubectl scale --replicas=9 deploy grocery-deployment-1
 ```
 
+check current pods
+```
+kubectl get pods --show-labels
+```
+```
+kubectl delete deploy grocery-deployment
+```
+
+```
+kubectl scale --replicas=10 deploy grocery-deployment-2
+```
 
 
 ## Helm Chart
