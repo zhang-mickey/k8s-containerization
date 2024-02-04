@@ -1,4 +1,7 @@
 # import sqlite3
+from flask_sqlalchemy import SQLALchemy
+
+from flask_cors import CROS,cross_origin
 
 import psycopg2
 
@@ -9,18 +12,22 @@ from flask import Flask, session, render_template, g, request, redirect, url_for
 
 
 
-
-
-
 app = Flask(__name__)
+
+cors=CORS(app)
 
 app.secret_key = "manbearpig_MUDMAN888"
 
 app.config["SESSION_COOKIE_NAME"] = "myCOOKIE_monSTER528"
+# os.env
+app.config['SQLALCHEMY_DATABASE_URL']="postgresql://postgres:123456@postgres-service-1:5432/my_db"
+
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
 
 
 
 @app.route("/", methods=["POST", "GET"])
+@cross_origin()
 
 def index():
 
@@ -33,6 +40,7 @@ def index():
 
 
 @app.route("/add_items", methods=["post"])
+@cross_origin()
 
 def add_items():
 
@@ -47,6 +55,7 @@ def add_items():
 
 
 @app.route("/remove_items", methods=["post"])
+@cross_origin()
 
 def remove_items():
 
@@ -73,6 +82,7 @@ def remove_items():
 
 
 @app.route("/delete_items", methods=["POST"])
+@cross_origin()
 
 def delete_items():
 
@@ -168,4 +178,4 @@ def close_connection(exception):
 
 if __name__ == '__main__':
 
-    app.run()
+    app.run(host="0.0.0.0", port =5000, debug=False)
