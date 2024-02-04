@@ -8,7 +8,7 @@
 
 * Class Diagram
 
-<img width="954" alt="image" src="https://github.com/calvinhaooo/software_containerization_G43/assets/145265103/f0b18a42-fbe1-454b-99cc-9b4939e89cff“>
+
 
 * Kubenetes Diagram
 
