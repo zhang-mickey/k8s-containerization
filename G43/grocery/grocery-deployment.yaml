@@ -9,14 +9,16 @@ spec:
   selector:
     matchLabels:
       app: grocery-api
+      version:v1.0.0
   template:
     metadata:
       labels:
         app: grocery-api
+        version:v1.0.0
     spec:
       containers:
       - name: grocery-api-container
-        image: localhost:32000/grocery-app:v1
+        image: us-east1-docker.pkg.dev/poised-rocked-413209/grocery/123
         ports:
         - containerPort: 5000
    
