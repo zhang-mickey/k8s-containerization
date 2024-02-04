@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grocery-deployment
+  labels:
+    app: grocery-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: grocery-api
+      version:v2.0.0
+  template:
+    metadata:
+      labels:
+        app: grocery-api
+        version:v2.0.0
+    spec:
+      containers:
+      - name: grocery-api-container
+        image: localhost:32000/grocery-app:v1
+        ports:
+        - containerPort: 5000
