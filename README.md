@@ -36,6 +36,10 @@ docker build .
 docker tag dockerID us-east1-docker.pkg.dev/poised-rock-413209/grocery/zhang
 docker push us-east1-docker.pkg.dev/poised-rock-413209/grocery/zhang
 ```
+```
+/etc/hosts
+127.0.0.1 mygrocery-g43-1.com
+```
 
 ## Implement the dockerfile for configuration
 * Frontend --> css, js
@@ -75,18 +79,24 @@ the Service exposed by the database is such that it can be accessed by the REST 
 
 Ensure that the configuration of the database makes use of ConfigMaps and Secrets appropriately
 
-## RESTAPI  
+## RESTAPI  Web front-end
 we create your own Dockerfile for this image
 
 can read and write to the database
-when in cloud:
-ip changes
+when in the cloud the ip addresss changes, we can connect the database using servicename because of the DNS provided
 
-## Web front-end
 we build the frontend files into flask application image. 
-## Helm Chart
-```
 
+## Helm Chart
+First,we create a helm chart called **grocery-test**.
+Then, after reuse all the yamls we have created,we can use helm to apply it all at once. 
+```
+helm install ./grocery-test --generate-name
+```
+we can uninstall the application with helm delete
+```
+helm list
+helm delete <helm-name>
 ```
 ## TLS
 use **cert-manager** 
@@ -111,6 +121,7 @@ To test the network policy we have defined:
 ```
 sudo microk8s kubectl run test -$RANDOM --rm -i -t -image=apline --labels="app=postgres" --sh
 ```
+then we use wget to verify the connection 
 
 ```
 wget -qO http://grocery-service-1
@@ -124,6 +135,9 @@ check user permissions as follows
 
 
 ```
+sudo microk8s kubectl auth can-i list pod --namespace default --as zzy
+sudo microk8s kubectl auth can-i get pod --namespace default --as zzy
+sudo microk8s kubectl auth can-i create pod --namespace default --as zzy
 sudo microk8s kubectl auth can-i list pod --namespace default --as calvin
 sudo microk8s kubectl auth can-i get pod --namespace default --as calvin
 sudo microk8s kubectl auth can-i create pod --namespace default --as calvin
@@ -146,21 +160,18 @@ docker tag dockerID us-east1-docker.pkg.dev/poised-rock-413209/grocery/zhang
 docker push us-east1-docker.pkg.dev/poised-rock-413209/grocery/zhang
 ```
 
-```
-helm install ./grocery-test --generate-name
 
 
-```
-/etc/hosts
- mygrocery-g43.com
+
+
 ```
 SELECT * FROM <table_name>;
 
 ```
+
 ## commands on Microk8s
 
 ```
 microk8s enable cert-manager
-/etc/hosts
-127.0.0.1 mygrocery-g43-1.com
+
 ```
