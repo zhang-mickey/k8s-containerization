@@ -35,7 +35,13 @@ docker build .
 docker tag dockerID us-east1-docker.pkg.dev/poised-rock-413209/grocery/zhang
 docker push us-east1-docker.pkg.dev/poised-rock-413209/grocery/zhang
 ```
-with microk8s,we need to map the ip address and url.
+when using GCP,we need to use the hostPath that is allowed:
+opt is not allowed ,we can use var
+```
+hostPath:
+    path: "/var/postgres"
+```
+with microk8s,we can map the ip address and url.
 ```
 /etc/hosts
 127.0.0.1 mygrocery-g43-1.com
