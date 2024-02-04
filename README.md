@@ -3,7 +3,6 @@
 
 ## Diagram
 
-
 * Sequence Diagram
 <img width="954" alt="image" src="https://github.com/calvinhaooo/software_containerization_G43/assets/145342600/fee6a71f-241b-4698-a1ec-4684b3217f14">
 
@@ -36,6 +35,7 @@ docker build .
 docker tag dockerID us-east1-docker.pkg.dev/poised-rock-413209/grocery/zhang
 docker push us-east1-docker.pkg.dev/poised-rock-413209/grocery/zhang
 ```
+with microk8s,we need to map the ip address and url.
 ```
 /etc/hosts
 127.0.0.1 mygrocery-g43-1.com
@@ -62,30 +62,41 @@ docker push us-east1-docker.pkg.dev/poised-rock-413209/grocery/zhang
 
 
 ## Application upgrade and re-deployment
-re-build the application after a source code change 
+re-build the application after a source code change. we need to build the iamge again and push the backend image to the repository.
+```
+docker build .
 ```
 
+push the image to the repository, tag it with the repository name and then push the image‘
 ```
-upgrade the running application in two ways: deployment rollout and canary update
+docker tag dockerID us-east1-docker.pkg.dev/poised-rock-413209/grocery/zhang
+docker push us-east1-docker.pkg.dev/poised-rock-413209/grocery/zhang
 ```
+
+upgrade the running application in two ways:
+**deployment rollout** 
+when we change the version or image, we can upgrade the application using helm upgrade
+
+```
+helm upgrade outlets outlets -f outlets/values-v2.yaml
 ```
 
-## PostgreSQL
+if needed,we can  rollback to previous version
+```
+helm rollback <helm-name> 1
+```
 
-we use a pre-built docker image and create our own Dockerfile for the database,because we want the docker to run the sql file to create the database in the beginning
+**canary update**
+Firtst we have 10 pods for the grocery-deployment
+```
+kubectl get pods --show-labels
+```
+apply the grocery-deployment2.yaml
+```
+kubectl apply -f grocery-deployment2.yaml
+```
 
 
-the Service exposed by the database is such that it can be accessed by the REST API, but not by users outside of the cluster 
-
-Ensure that the configuration of the database makes use of ConfigMaps and Secrets appropriately
-
-## RESTAPI  Web front-end
-we create your own Dockerfile for this image
-
-can read and write to the database
-when in the cloud the ip addresss changes, we can connect the database using servicename because of the DNS provided
-
-we build the frontend files into flask application image. 
 
 ## Helm Chart
 First,we create a helm chart called **grocery-test**.
@@ -143,26 +154,28 @@ sudo microk8s kubectl auth can-i get pod --namespace default --as calvin
 sudo microk8s kubectl auth can-i create pod --namespace default --as calvin
 ```
 
+## PostgreSQL
+
+we use a pre-built docker image and create our own Dockerfile for the database,because we want the docker to run the sql file to create the database in the beginning
+
+For PostgreSQL, the Service type is ClusterIP,such that it can be accessed by the REST API, but not by users outside of the cluster 
+
+For different information, we use different configuration(ConfigMap and Secret) to ensure security.
+
+## RESTAPI  Web front-end
+First we create our own Dockerfile for the image.
+For the service, we have the type:**NodePort** in microk8s and we have the type :**LoadBalancer** in GCP.
+It can read and write to the database
+when in the cloud the ip addresss changes, we can connect the database using servicename because of the DNS provided
+
+we build the frontend files into flask application image. 
+
+
+
 ## google cloud
 enable calico k8s network policy
 
-```
-```
-
 upload the file to the cluster through cloudshell
-```
-docker build .
-```
-
-push the image to the repository, tag it with the repository name and then push the image‘
-```
-docker tag dockerID us-east1-docker.pkg.dev/poised-rock-413209/grocery/zhang
-docker push us-east1-docker.pkg.dev/poised-rock-413209/grocery/zhang
-```
-
-
-
-
 
 ```
 SELECT * FROM <table_name>;
