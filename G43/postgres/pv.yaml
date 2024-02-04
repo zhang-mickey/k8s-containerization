@@ -11,5 +11,5 @@ spec:
     storage: 5Gi
   accessModes:
     - ReadWriteMany
-  hostPath:
-    path: "/opt/postgres/data"
+hostPath:
+    path: "/var/postgres"
