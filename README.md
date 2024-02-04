@@ -14,10 +14,23 @@
 
 ## Prequisites
 
-For installation, Docker and microk8s should be installed for our project
+For installation, Docker and microk8s should be installed for our project.
+we also need to create a private repository  (like us-east1-docker.pkg.dev/poised-rock-413209/grocery) so we can push our docker image into it if using Google cloud 
 ```
 microk8s install
 Docker install
+```
+in the grocery directory,run the command
+```
+docker build .
+docker tag dockerID us-east1-docker.pkg.dev/poised-rock-413209/grocery/123
+docker push us-east1-docker.pkg.dev/poised-rock-413209/grocery/123
+```
+in the postgres dicretory,run the command
+```
+docker build .
+docker tag dockerID us-east1-docker.pkg.dev/poised-rock-413209/grocery/zhang
+docker push us-east1-docker.pkg.dev/poised-rock-413209/grocery/zhang
 ```
 
 ## Implement the dockerfile for configuration
@@ -125,7 +138,9 @@ To test the network policy we have defined:
 
 
 ## RBAC
+we define and create three roles(admin,secret-watch,pod-watch) and bind them to the user calvin
 check user permissions as follows
+
 
 ```
 sudo microk8s kubectl auth can-i list pod --namespace default --as calvin
